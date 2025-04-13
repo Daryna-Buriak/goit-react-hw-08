@@ -18,9 +18,9 @@ export default function ContactsPage() {
   return (
     <>
       <PageTitle>Your contacts</PageTitle>
-      <div>{isLoading && "Request in progress..."}</div>
       <ContactForm />
       <SearchBox />
+      <div>{isLoading && "Request in progress..."}</div>
       <ContactsList />
     </>
   );
