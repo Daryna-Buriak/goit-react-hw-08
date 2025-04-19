@@ -10,6 +10,7 @@ import { refreshUser } from "../src/redux/auth/operations";
 import PrivateRoute from "../src/components/PrivateRoute/PrivateRoute";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const HomePage = lazy(() => import("../src/pages/HomePage/HomePage"));
 const RegistrationPage = lazy(() =>
@@ -32,7 +33,13 @@ function App() {
     }
   }, [dispatch, token]);
 
-  return (
+  return isRefreshing ? (
+    <div
+      style={{ display: "flex", justifyContent: "center", marginTop: "4rem" }}
+    >
+      <CircularProgress />
+    </div>
+  ) : (
     <Layout>
       <Suspense fallback={null}>
         <Routes>
