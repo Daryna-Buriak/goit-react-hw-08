@@ -7,6 +7,7 @@ import {
 } from "./operations";
 import { selectNameFilter } from "../filters/selectors";
 import { selectContacts } from "./selectors";
+import { logOut } from "../auth/operations";
 
 const slice = createSlice({
   name: "contacts",
@@ -64,6 +65,11 @@ const slice = createSlice({
         state.items = state.items.filter(
           (item) => item.id !== action.payload.id
         );
+      })
+      .addCase(logOut.fulfilled, (state) => {
+        state.items = [];
+        state.error = false;
+        state.loading = false;
       });
   },
 });
